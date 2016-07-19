@@ -1,0 +1,20 @@
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.PageFactory;
+
+
+public class Main 
+{
+
+	public static void main(String args []) throws InterruptedException
+	{
+	    
+	    	Abhibuslogin abhi = new Abhibuslogin();
+		WebDriver driver = new FirefoxDriver();
+		driver.get("http://www.abhibus.com/");
+		PageFactory.initElements(driver, abhi);
+		abhi.login(driver);
+		
+	}	
+    
+}
