@@ -1,0 +1,32 @@
+package testcase;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.PageFactory;
+
+import pageobject.Abhibuslogin;
+import pageobject.Cancel;
+
+
+public class Main 
+{
+
+	public static void main(String args []) throws InterruptedException
+	{
+	    
+	    Abhibuslogin abhi = new Abhibuslogin();
+	    Cancel can =  new Cancel();
+		WebDriver driver = new FirefoxDriver();
+		driver.get("http://www.abhibus.com/");
+		driver.manage().window().maximize();
+		PageFactory.initElements(driver, abhi);
+		PageFactory.initElements(driver, can);
+		abhi.login(driver);
+		can.cancelTicket(driver);
+		
+		
+		
+	}	
+    
+}
+
