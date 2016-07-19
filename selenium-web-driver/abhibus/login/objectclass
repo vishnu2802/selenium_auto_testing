@@ -1,0 +1,39 @@
+package pageobject;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+
+public class Abhibuslogin{ 	
+
+@FindBy(xpath = ".//*[@id='AccLogin']/span/a")
+private WebElement login;
+//click on login page
+
+@FindBy(id = "EmailID")
+private WebElement mailid;
+//go to mail id
+
+@FindBy(id = "LoginPassword") 
+private WebElement password;
+// go to password
+
+@FindBy(id = "SignINAjx")
+private WebElement signin;
+WebDriver driver;
+//click the signin button
+
+public void login(WebDriver driver) throws InterruptedException
+{
+ /*System.out.println(driver.getCurrentUrl());*/
+    login.click();
+    Thread.sleep(2000);
+    mailid.sendKeys("enter the mail id");
+    password.sendKeys("password");
+    signin.click();
+    
+}
+
+}
