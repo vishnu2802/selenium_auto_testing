@@ -1,0 +1,40 @@
+package pageobject;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+
+public class Cancel
+{
+
+	WebDriver driver;
+	
+	@FindBy(xpath = "html/body/header/div/div[2]/a[3]")
+	private WebElement ticket;
+	//Go to cancel button
+	
+	@FindBy(id = "ticket_num")
+	private WebElement ticketnumber;
+	//Go to enter ticket number
+	
+	@FindBy(id = "phonenum")
+	private WebElement phonenumber;
+	//Go to enter phone number
+	
+	@FindBy(xpath = ".//*[@id='Form1']/div/div[4]/input")
+	private WebElement retrieve;
+	//click ob the retrieve button
+	
+	public void cancelTicket(WebDriver driver) throws InterruptedException
+	{
+	    driver.get("http://abhibus.com");
+	    ticket.click();
+	    Thread.sleep(2000);
+	    ticketnumber.sendKeys("12324");//enter your ticket nubmer
+	    phonenumber.sendKeys("9999999999");//enter your phone nubmer
+	    retrieve.click();
+	    
+	    
+	}
+	
