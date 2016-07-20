@@ -1,0 +1,85 @@
+package com.abhibus;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.sql.Driver;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+public class ReadExcelValues 
+{
+	ReadExcel re=null;
+	String file ="/home/anilkumar/Desktop/backup_new/personal/abhibus/Input.xlsx";
+	FileInputStream input =null;
+	XSSFWorkbook book =null;
+	XSSFSheet sheet =null;
+	
+	/*public static void main(String [] args) throws IOException
+	{
+			ReadExcelValues rv = new ReadExcelValues();
+			rv.readExcle();
+	}*/
+	public List<ReadExcel> readExcle() throws IOException
+	
+	{
+		/*DateFormat df = new SimpleDateFormat("DD/MM/YYYY");
+		Date date = new Date();
+		System.out.println(df.format(date));*/
+		FileInputStream input = new FileInputStream(file);
+		XSSFWorkbook book = new XSSFWorkbook(input);
+		XSSFSheet sheet = book.getSheet("Sheet1");
+		List<ReadExcel> readList = new ArrayList<ReadExcel>();
+	
+		int rowscount = sheet.getPhysicalNumberOfRows();
+				
+				for(int i=1;i<rowscount;i++)
+				{
+					ReadExcel re = new ReadExcel();
+					re.setFromCity(sheet.getRow(i).getCell(0).toString());
+					re.setToCity(sheet.getRow(i).getCell(1).toString());
+					re.setOnwardJourneyDate(sheet.getRow(i).getCell(2).toString());
+					re.setCorporation(sheet.getRow(i).getCell(3).toString());
+					re.setOnward(sheet.getRow(i).getCell(4).toString());
+					re.setTwoWay(sheet.getRow(i).getCell(5).toString());
+					re.setReturnJournyDate(sheet.getRow(i).getCell(6).toString());
+					re.setBusType(sheet.getRow(i).getCell(8).toString());
+					re.setReturncorporation(sheet.getRow(i).getCell(7).toString());
+					re.setMale(sheet.getRow(i).getCell(9).toString());
+					re.setFemale(sheet.getRow(i).getCell(10).toString());
+					re.setWalletAmount(sheet.getRow(i).getCell(11).toString());
+					re.setInsurance(sheet.getRow(i).getCell(12).toString());
+					re.setLogin(sheet.getRow(i).getCell(13).toString());
+					re.setUserName(sheet.getRow(i).getCell(14).toString());
+					re.setPassWord(sheet.getRow(i).getCell(15).toString());
+					readList.add(re);
+				}
+				
+				for(int i=0;i<readList.size();i++){
+						System.out.println(readList.get(i));
+				}
+			return readList;
+	}
+	public void writeExcel(int e, String message, String ticket) throws IOException
+	{
+		FileInputStream input = new FileInputStream(file);
+		XSSFWorkbook book = new XSSFWorkbook(input);
+		XSSFSheet sheet = book.getSheet("Sheet1");
+		/*sheet.createRow(e).createCell(18).setCellValue(message);
+		sheet.createRow(e).createCell(19).setCellValue(tickcet);*/
+		sheet.getRow(e).createCell(18).setCellValue(message);
+		sheet.getRow(e).createCell(19).setCellValue(ticket);
+		FileOutputStream outputStream = new FileOutputStream(file);
+	    book.write(outputStream);
+	    input.close();
+	    outputStream.close();
+	 }
+}
+	
