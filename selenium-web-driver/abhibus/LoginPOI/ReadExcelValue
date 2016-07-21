@@ -17,7 +17,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class ReadExcelValues 
 {
 	ReadExcel re=null;
-	String file ="/home/anilkumar/Desktop/backup_new/personal/abhibus/Input.xlsx";
+	String file ="D://excel//login.xlsx";
 	FileInputStream input =null;
 	XSSFWorkbook book =null;
 	XSSFSheet sheet =null;
